@@ -17,6 +17,16 @@ class Name < ActiveRecord::Base
 end
 puts(Name.first.firstname)
 
+#TODO: унести это в модели
+
+class Visit < ActiveRecord::Base
+end
+
+class Pageview < ActiveRecord::Base
+end
+
+Visit.delete_all
+Pageview.delete_all
 
 #Notifier.finalize!
 #Migrater.finalize!
