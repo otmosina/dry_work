@@ -15,7 +15,8 @@ ActiveRecord::Base.establish_connection(
 
 class Name < ActiveRecord::Base
 end
-
 puts(Name.first.firstname)
 
+
 Notifier.finalize!
+Migrater.finalize!

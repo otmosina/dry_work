@@ -12,3 +12,14 @@ class Notifier < Dry::System::Container
     load_paths!('lib', 'system')
 end
 
+
+class Migrater < Dry::System::Container
+  #use :logging
+  #use :env, inferrer: -> { ENV.fetch('RACK_ENV', :development).to_sym }
+  #use :monitoring #maybe later use
+  configure do |config|
+    config.auto_register << 'db'
+  end
+  load_paths!('db')
+end
+

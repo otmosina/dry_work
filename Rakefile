@@ -1,8 +1,9 @@
 require 'pry'
+require_relative './system/boot'
 namespace :app do
     desc 'Check stock price'
     task :check_price, %i[ticker price] do |_task_name, args|
-      require_relative './system/boot'
+      
 
       ticker = args[:ticker]
       price = BigDecimal(args[:price])
@@ -16,5 +17,19 @@ namespace :app do
         Notifier['notifier.main'].call(ticker, price)
         sleep 1
       end
+    end
+
+    task :migrate_all do
+      require_relative './system/boot'
+
+      CreatePageviewsTable.migrate(:up)
+      CreateVisitsTable.migrate(:up)
+    end
+
+    task :rollback_all do
+      require_relative './system/boot'
+      CreateVisitsTable.migrate(:down)
+      CreatePageviewsTable.migrate(:down)
+      
     end
 end
