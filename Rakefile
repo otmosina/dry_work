@@ -1,8 +1,9 @@
 require 'pry'
-require_relative './system/boot'
+
 namespace :app do
     desc 'Check stock price'
     task :check_price, %i[ticker price] do |_task_name, args|
+      require_relative './system/boot'
       
 
       ticker = args[:ticker]
@@ -32,4 +33,10 @@ namespace :app do
       CreatePageviewsTable.migrate(:down)
       
     end
+
+    desc 'Exec test task'
+    task :shastic do
+      require_relative './system/boot'
+      Collector['collector.main'].call()
+    end    
 end

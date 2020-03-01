@@ -18,5 +18,6 @@ end
 puts(Name.first.firstname)
 
 
-Notifier.finalize!
-Migrater.finalize!
+#Notifier.finalize!
+#Migrater.finalize!
+Collector.finalize!
